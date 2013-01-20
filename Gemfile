@@ -21,6 +21,15 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group 'development' do
+  gem 'rspec'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'rspec-rails'
+  gem 'rb-inotify', '~> 0.8.8'
+  gem 'libnotify'
+end
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
