@@ -20,3 +20,9 @@ class Amount
     "#{@nr_of_units} of #{@product.name}"
   end
 end
+
+class Fixnum
+  def units_of a_product
+    Amount.new a_product, self
+  end
+end

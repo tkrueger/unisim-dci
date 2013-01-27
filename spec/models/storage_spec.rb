@@ -21,7 +21,7 @@ describe Storage do
     end
 
     it "puts them in the storage" do
-      @storage.content(@ore).should == Amount.new(@ore, 2)
+      @storage.content(@ore).should == 2.units_of(@ore)
     end
 
     it "counts against free capacity" do
@@ -33,8 +33,8 @@ describe Storage do
   describe "storing multiple products" do
     before :each do
       @storage = Storage.new 100
-      @amount_of_ore = Amount.new  @ore, 2
-      @amount_of_silicon = Amount.new  @silicon, 2
+      @amount_of_ore = 2.units_of @ore
+      @amount_of_silicon = 2.units_of @silicon
       @storage.store @amount_of_ore
       @storage.store @amount_of_silicon
     end
@@ -55,7 +55,7 @@ describe Storage do
     end
 
     it "is only possible for stuff that's in" do
-      expect { @storage.retrieve Amount.new @ore, 10 }.to raise_error
+      expect { @storage.retrieve 10.units_of @ore }.to raise_error
     end
   end
 end
