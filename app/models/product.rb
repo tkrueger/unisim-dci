@@ -6,4 +6,5 @@ class Product
     @name = name
     @unit_size = unit_size
   end
+
 end

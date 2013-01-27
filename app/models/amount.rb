@@ -2,6 +2,7 @@ class Amount
   attr_reader :nr_of_units, :product
 
   def initialize product, nr_of_units
+    raise "argument 'product' is mandatory" if product == nil
     @nr_of_units = nr_of_units
     @product = product
   end
@@ -19,6 +20,7 @@ class Amount
   def to_s
     "#{@nr_of_units} of #{@product.name}"
   end
+
 end
 
 class Fixnum
