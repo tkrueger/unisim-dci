@@ -17,6 +17,29 @@ class Amount
     @product.unit_size == other.product.unit_size
   end
 
+  def - other
+    (@nr_of_units - other.nr_of_units).units_of @product
+  end
+
+  def > other
+    raise ArgumentError.new unless other.product == @product
+    @nr_of_units > other.nr_of_units
+  end
+
+  def >= other
+    @nr_of_units >= other.nr_of_units
+  end
+
+  def < other
+    raise ArgumentException.new unless other.product == @product
+    @nr_of_units < other.nr_of_units
+  end
+
+  def <= other
+    raise ArgumentError.new unless other.product == @product
+    @nr_of_units <= other.nr_of_units
+  end
+
   def to_s
     "#{@nr_of_units} of #{@product.name}"
   end

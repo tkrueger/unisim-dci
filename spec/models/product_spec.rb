@@ -12,4 +12,8 @@ describe Product do
   it "should have a unit size" do
     Product.new("some product", 1).unit_size.should == 1
   end
+
+  it 'can be checked for equality' do
+    (Product.new('some product', 1) == Product.new('some product', 1)).should == true
+  end
 end

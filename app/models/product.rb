@@ -7,4 +7,8 @@ class Product
     @unit_size = unit_size
   end
 
+  def == other
+    return false unless other.instance_of? Product
+    return other.name == @name
+  end
 end

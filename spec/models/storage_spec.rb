@@ -12,6 +12,25 @@ describe Storage do
     storage.capacity.should == 100
   end
 
+  it "returns empty amount when asked for contents not present" do
+    storage = Storage.new 100
+    storage.content(@ore).should == Amount.new(@ore, 0)
+  end
+
+  describe 'checking available space' do
+    it 'works on an empty storage' do
+      storage = Storage.new 10
+      storage.has_room_for?(1.units_of @ore).should == true
+      storage.has_room_for?(3.units_of @ore).should == false
+    end
+
+    it 'works on a filled storage' do
+      storage = Storage.new 100
+      storage.store 99.units_of @silicon
+      storage.has_room_for?(2.units_of @silicon).should == false
+    end
+  end
+
   describe "storing product amounts" do
 
     before :each do
@@ -47,15 +66,20 @@ describe Storage do
     it "counts against free capacity" do
       @storage.free_space.should == (100 - @amount_of_ore.required_storage_space - @amount_of_silicon.required_storage_space)
     end
+
   end
 
   describe "retrieving from storage" do
     before :each do
       @storage = Storage.new 100
+      @storage.store 10.units_of @silicon
     end
 
     it "is only possible for stuff that's in" do
       expect { @storage.retrieve 10.units_of @ore }.to raise_error
+      @storage.retrieve 4.units_of @silicon
+      @storage.content(@silicon).should eq(6.units_of @silicon)
     end
+
   end
 end
