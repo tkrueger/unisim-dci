@@ -31,6 +31,8 @@ group 'development' do
   gem 'libnotify'
 end
 
+gem 'simplecov', :require => false, :group => :test
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
